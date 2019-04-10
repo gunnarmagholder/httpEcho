@@ -10,7 +10,8 @@ headerStandard.json - what to send as the header
 
 # Parameters
 -s defines the statuscode to be send  
--h show a help page and exit  
+-h show a help page and exit   
+-p set the listening port for the server  
   
 if you use yarn you can use the following scripts: 
   
