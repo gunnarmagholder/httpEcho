@@ -7,10 +7,13 @@ if (argv.hasOwnProperty('h')) {
 	console.log('logHttp - simple Echo Server for testing');
 	console.log(' ');
 	console.log(' -h : display this help');
+	console.log(' -s : set status code for response');
+	console.log(' -p : set listening port for server');
+
 	process.exit();
 }
-
 const statusCode = argv['s'] ? argv['s'] : 200;
+const serverPort = argv['p'] ? argv['p'] : 3000;
 
 console.log("Using Status Code ", statusCode);
 
@@ -39,5 +42,5 @@ function writeBodyJSON(res) {
 }
 
 
-console.log("Starting Server on Port 3000");
-app.listen(3000);
+console.log("Starting Server on Port " + serverPort);
+app.listen(serverPort);
