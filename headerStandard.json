@@ -1,0 +1,6 @@
+	{
+		"Content-Type": "text/json",
+		"Access-Control-Allow-Origin": "*",
+		"X-Powered-By": "nodeEchoService"
+	}
+

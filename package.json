@@ -1,0 +1,22 @@
+{
+  "name": "logHttp",
+  "version": "0.0.1",
+  "author": "G. Magholder",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "watch": "nodemon --watch . server.js",
+		"runok": "node server.js -s 200",
+		"runfail": "node server.js -s 404",
+		"runserverfail": "node server.js -s 500"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "http": "^0.0.0",
+    "minimist": "^1.2.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
