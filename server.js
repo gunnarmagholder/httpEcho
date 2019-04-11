@@ -3,6 +3,8 @@ const url = require('url');
 const http = require('http');
 const fs = require('fs');
 const argv = require('minimist')(process.argv.slice(2));
+let displayMessages = true;
+
 
 if (argv.hasOwnProperty('h')) {
 	console.log('logHttp - simple Echo Server for testing');
@@ -12,6 +14,7 @@ if (argv.hasOwnProperty('h')) {
 	console.log(' -p : set listening port for server');
 	console.log(' -e : set JSON file cotaining headers');
 	console.log(' -b : set file to be sent as body');
+	console.log(' -i : no informational messages');
 
 	process.exit();
 }
@@ -20,17 +23,23 @@ const serverPort = argv['p'] ? argv['p'] : 3000;
 const headerFile = argv['e'] ? argv['e'] : 'httpechostandardheader';
 const bodyFile = argv['b'] ? argv['b'] : 'httpechostandardbody';
 
+if(argv['i']) { displayMessages = false; }
+
 checkFileOrExit(headerFile, 'Headerfile');
 checkFileOrExit(bodyFile, 'Bodyfile');
 
-console.log("Using Status Code ", statusCode);
+if(displayMessages) {
+	console.log("Using Status Code ", statusCode);
+}
 
 const app = http.createServer((req, res) => {
   query = url.parse(req.url, true).query;
-  console.log("Incoming request");
+	if(displayMessages) {
+  	console.log("Incoming request");
 
-	console.log(req.headers);
-  res.writeHead(statusCode, writeHeaderJSON()); 
+		console.log(req.headers);
+	}
+	res.writeHead(statusCode, writeHeaderJSON()); 
   if ((statusCode >= 200) && (statusCode < 400)) {
 		res.write(JSON.stringify(writeBodyJSON()));
 	}
@@ -39,14 +48,18 @@ const app = http.createServer((req, res) => {
 
 
 function writeHeaderJSON(res) {
-	console.log('Using ' + headerFile + ' as returned Headers');
+	if(displayMessages) {
+		console.log('Using ' + headerFile + ' as returned Headers');
+	}
 	let content = checkFileOrExit(headerFile, 'Headerfile');
  	jsonContent =  JSON.parse(content);
 	return jsonContent; 
 }
 
 function writeBodyJSON(res) {
-	console.log('Using ' + bodyFile + ' as returned Body');
+	if(displayMessages) {
+		console.log('Using ' + bodyFile + ' as returned Body');
+	}
 	let content = checkFileOrExit(bodyFile, 'Bodyfile');
 	return content; 
 }
