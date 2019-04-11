@@ -1,35 +1,35 @@
 {
-  "name": "@gmagholder/echohttp",
-  "version": "0.3.0",
-  "author": {
-		"name": "G. Magholder",
-		"email": "gmagholder@gmail.com"
-	},
-  "main": "server.js",
-	"homepage": "https://github.com/gunnarmagholder/httpEcho",
-	"bugs": "https://github.com/gunnarmagholder/httpEcho/issues",
-	"bin": {
-		"echohttp": "./server.js"
-	},
-	"preferGlobal": true,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/gunnarmagholder/httpEcho"
-	},
-	"license": "MIT",
-  "scripts": {
-    "watch": "nodemon --watch . server.js",
-		"runok": "node server.js -s 200",
-		"runfail": "node server.js -s 404",
-		"runserverfail": "node server.js -s 500"
-  },
-  "dependencies": {
-    "express": "^4.16.4",
-    "http": "^0.0.0",
-    "minimist": "^1.2.0",
-    "url": "^0.11.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.11"
-  }
+		"name": "@gmagholder/echohttp",
+		"version": "0.3.0",
+		"author": {
+				"name": "G. Magholder",
+				"email": "gmagholder@gmail.com"
+		},
+		"main": "server.js",
+		"homepage": "https://github.com/gunnarmagholder/httpEcho",
+		"bugs": "https://github.com/gunnarmagholder/httpEcho/issues",
+		"bin": {
+				"echohttp": "./server.js"
+		},
+		"preferGlobal": true,
+		"repository": {
+				"type": "git",
+				"url": "https://github.com/gunnarmagholder/httpEcho"
+		},
+		"license": "MIT",
+		"scripts": {
+				"watch": "nodemon --watch . server.js",
+				"runok": "node server.js -s 200",
+				"runfail": "node server.js -s 404",
+				"runserverfail": "node server.js -s 500"
+		},
+		"dependencies": {
+				"express": "^4.16.4",
+				"http": "^0.0.0",
+				"minimist": "^1.2.0",
+				"url": "^0.11.0"
+		},
+		"devDependencies": {
+				"nodemon": "^1.18.11"
+		}
 }
