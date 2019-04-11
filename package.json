@@ -1,9 +1,18 @@
 {
   "name": "logHttp",
   "version": "0.0.1",
-  "author": "G. Magholder",
+  "author": {
+		"name": "G. Magholder",
+		"email": "gmagholder@gmail.com"
+	},
   "main": "server.js",
-  "license": "MIT",
+	"homepage": "https://github.com/gunnarmagholder/httpEcho",
+	"bugs": "https://github.com/gunnarmagholder/httpEcho/issues",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gunnarmagholder/httpEcho"
+	},
+	"license": "MIT",
   "scripts": {
     "watch": "nodemon --watch . server.js",
 		"runok": "node server.js -s 200",
