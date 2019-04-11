@@ -8,6 +8,10 @@
   "main": "server.js",
 	"homepage": "https://github.com/gunnarmagholder/httpEcho",
 	"bugs": "https://github.com/gunnarmagholder/httpEcho/issues",
+	"bin": {
+		"echohttp": "./server.js"
+	},
+	"preferGlobal": true,
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/gunnarmagholder/httpEcho"
