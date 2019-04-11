@@ -48,8 +48,7 @@ function writeHeaderJSON(res) {
 function writeBodyJSON(res) {
 	console.log('Using ' + bodyFile + ' as returned Body');
 	let content = checkFileOrExit(bodyFile, 'Bodyfile');
- 	jsonContent =  JSON.parse(content);
-	return jsonContent; 
+	return content; 
 }
 
 function checkFileOrExit(fileName, fileDescription) {
