@@ -17,8 +17,8 @@ if (argv.hasOwnProperty('h')) {
 }
 const statusCode = argv['s'] ? argv['s'] : 200;
 const serverPort = argv['p'] ? argv['p'] : 3000;
-const headerFile = argv['e'] ? argv['e'] : 'headerStandard.json';
-const bodyFile = argv['b'] ? argv['b'] : 'bodyStandard.json';
+const headerFile = argv['e'] ? argv['e'] : 'httpechostandardheader';
+const bodyFile = argv['b'] ? argv['b'] : 'httpechostandardbody';
 
 checkFileOrExit(headerFile, 'Headerfile');
 checkFileOrExit(bodyFile, 'Bodyfile');
@@ -40,19 +40,38 @@ const app = http.createServer((req, res) => {
 
 function writeHeaderJSON(res) {
 	console.log('Using ' + headerFile + ' as returned Headers');
-	let content = fs.readFileSync(headerFile);
+	let content = checkFileOrExit(headerFile, 'Headerfile');
  	jsonContent =  JSON.parse(content);
 	return jsonContent; 
 }
 
 function writeBodyJSON(res) {
 	console.log('Using ' + bodyFile + ' as returned Body');
-	let content = fs.readFileSync(bodyFile);
+	let content = checkFileOrExit(bodyFile, 'Bodyfile');
  	jsonContent =  JSON.parse(content);
 	return jsonContent; 
 }
 
 function checkFileOrExit(fileName, fileDescription) {
+	if(fileName === 'httpechostandardheader') {
+	let content = `	
+		{
+			"Content-Type": "text/json",
+			"Access-Control-Allow-Origin": "*",
+			"X-Powered-By": "nodeEchoService"
+		}
+		`;
+		return content;
+	}
+	if(fileName === 'httpechostandardbody') {
+	let content = `	
+		{
+  		"description": "returning Body",
+  		"X-Powered-By": "nodeEchoService"
+		}
+		`;
+		return content;
+	}
 	let checkResult = false;
 	try {
 		checkResult = fs.existsSync(fileName);
@@ -63,6 +82,14 @@ function checkFileOrExit(fileName, fileDescription) {
 	}
 	if (!checkResult) {
 		console.log(fileDescription + ' ' + fileName + ' not found!');
+		process.exit();
+	}
+	try {
+		let content = fs.readFileSync(fileName);
+		return content;
+	} 
+	catch(err) {
+		console.log('Error reading file ' + fileName + ' - Exiting.');
 		process.exit();
 	}
 }
