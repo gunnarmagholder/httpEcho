@@ -21,4 +21,31 @@ yarn runok - runs with statuscode 200
 yarn runfail - runs with statuscode 404  
 yarn runserverfail - runs with statuscode 500   
 
+# Use it 
+This tool can be installed as an NPM package. Just use   
+npm install echohttp -g  
+to install it globally. After that, there is the command  
+echohttp  
+available.  
+
+# Examples  
+  
+echohttp -h   
+Display the help.  
+  
+echohttp -s 404 -p 8080  
+Open the http server on port 8080 and always return the statuscode 404.   
+  
+echohttp -p 8080 -e header.json  
+Open the server on port 8080 and return the content of header.json as headers.  
+### header.js   
+  
+		{  
+			"Content-Type": "text/json",  
+			"Access-Control-Allow-Origin": "*",  
+			"X-Powered-By": "nodeEchoService"  
+		}  
+		  
+These are the fallback settings. The keys in that kson correspond to the header attribute, the values are the used values for every attribute.  
+
 
