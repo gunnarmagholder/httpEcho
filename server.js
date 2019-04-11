@@ -9,6 +9,8 @@ if (argv.hasOwnProperty('h')) {
 	console.log(' -h : display this help');
 	console.log(' -s : set status code for response');
 	console.log(' -p : set listening port for server');
+	console.log(" -e : set JSON file cotaining headers');
+	console.log(' -b : set file to be sent as body');
 
 	process.exit();
 }
