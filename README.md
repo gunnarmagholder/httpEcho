@@ -12,6 +12,8 @@ headerStandard.json - what to send as the header
 -s defines the statuscode to be send  
 -h show a help page and exit   
 -p set the listening port for the server  
+-e use a different headerfile instead of headerStandard.json  
+-b use a different bodyfile instead of bodyStandard.json  
   
 if you use yarn you can use the following scripts: 
   
