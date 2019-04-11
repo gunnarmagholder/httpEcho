@@ -1,6 +1,6 @@
 {
-  "name": "logHttp",
-  "version": "0.0.1",
+  "name": "@gunnarmagholder/echoHttp",
+  "version": "0.1.0",
   "author": {
 		"name": "G. Magholder",
 		"email": "gmagholder@gmail.com"
