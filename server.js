@@ -17,6 +17,8 @@ const serverPort = argv['p'] ? argv['p'] : 3000;
 const headerFile = argv['e'] ? argv['e'] : 'headerStandard.json';
 const bodyFile = argv['b'] ? argv['b'] : 'bodyStandard.json';
 
+checkFileOrExit(headerFile, 'Headerfile');
+checkFileOrExit(bodyFile, 'Bodyfile');
 
 console.log("Using Status Code ", statusCode);
 
@@ -47,6 +49,20 @@ function writeBodyJSON(res) {
 	return jsonContent; 
 }
 
+function checkFileOrExit(fileName, fileDescription) {
+	let checkResult = false;
+	try {
+		checkResult = fs.existsSync(fileName);
+	} 
+	catch(err) {
+		console.log('Error searching for ' + fileDescription + ' ' + fileName);
+		process.exit();
+	}
+	if (!checkResult) {
+		console.log(fileDescription + ' ' + fileName + ' not found!');
+		process.exit();
+	}
+}
 
 console.log("Starting Server on Port " + serverPort);
 app.listen(serverPort);
