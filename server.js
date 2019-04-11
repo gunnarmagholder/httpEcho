@@ -14,6 +14,9 @@ if (argv.hasOwnProperty('h')) {
 }
 const statusCode = argv['s'] ? argv['s'] : 200;
 const serverPort = argv['p'] ? argv['p'] : 3000;
+const headerFile = argv['e'] ? argv['e'] : 'headerStandard.json';
+const bodyFile = argv['b'] ? argv['b'] : 'bodyStandard.json';
+
 
 console.log("Using Status Code ", statusCode);
 
@@ -31,14 +34,17 @@ const app = http.createServer((req, res) => {
 
 
 function writeHeaderJSON(res) {
-	let content = fs.readFileSync("headerStandard.json");
-  jsonContent =  JSON.parse(content);
-	return jsonContent;
+	console.log('Using ' + headerFile + ' as returned Headers');
+	let content = fs.readFileSync(headerFile);
+ 	jsonContent =  JSON.parse(content);
+	return jsonContent; 
 }
 
 function writeBodyJSON(res) {
-    let content = fs.readFileSync("bodyStandard.json");
-    return JSON.stringify(JSON.parse(content));
+	console.log('Using ' + bodyFile + ' as returned Body');
+	let content = fs.readFileSync(bodyFile);
+ 	jsonContent =  JSON.parse(content);
+	return jsonContent; 
 }
 
 
