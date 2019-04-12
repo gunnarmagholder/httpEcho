@@ -15,6 +15,7 @@ if (argv.hasOwnProperty('h')) {
 	console.log(' -e : set JSON file cotaining headers');
 	console.log(' -b : set file to be sent as body');
 	console.log(' -i : no informational messages');
+	console.log(' -t : wait for given milliseconds');
 
 	process.exit();
 }
@@ -22,6 +23,7 @@ const statusCode = argv['s'] ? argv['s'] : 200;
 const serverPort = argv['p'] ? argv['p'] : 3000;
 const headerFile = argv['e'] ? argv['e'] : 'httpechostandardheader';
 const bodyFile = argv['b'] ? argv['b'] : 'httpechostandardbody';
+const waitMilliseconds = argv['t'] ? argv['t'] : 0;
 
 if(argv['i']) { displayMessages = false; }
 
@@ -39,11 +41,13 @@ const app = http.createServer((req, res) => {
 
 		console.log(req.headers);
 	}
-	res.writeHead(statusCode, writeHeaderJSON()); 
-  if ((statusCode >= 200) && (statusCode < 400)) {
-		res.write(JSON.stringify(writeBodyJSON()));
-	}
-	res.end();
+ 	setTimeout(() => {	
+		res.writeHead(statusCode, writeHeaderJSON()); 
+  	if ((statusCode >= 200) && (statusCode < 400)) {
+			res.write(JSON.stringify(writeBodyJSON()));
+		}
+		res.end();
+	}, waitMilliseconds);
 });
 
 
